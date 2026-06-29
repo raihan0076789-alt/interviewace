@@ -22,15 +22,14 @@ target_metadata = Base.metadata
 
 
 def _sync_database_url() -> str:
-    """
-    The app runs on an async driver (asyncpg / aiosqlite), but Alembic's
-    migration runner is simplest with a plain sync driver. Rather than
-    maintain two separate URLs, derive the sync one from settings.DATABASE_URL
-    so there's exactly one source of truth (the .env file).
-    """
     url = settings.DATABASE_URL
-    return url.replace("+asyncpg", "").replace("+aiosqlite", "")
 
+    url = url.replace("+asyncpg", "").replace("+aiosqlite", "")
+
+    if "ssl=require" in url:
+        url = url.replace("ssl=require", "sslmode=require")
+
+    return url
 
 def run_migrations_offline() -> None:
     url = _sync_database_url()
