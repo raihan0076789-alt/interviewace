@@ -1,15 +1,32 @@
-# InterviewAce
+# 🎯 InterviewAce
 
-AI mock interview coach with live voice and posture feedback. Built in phases — see [`backend/README.md`](backend/README.md) for what's implemented so far and how to run it.
+> AI-powered mock interview coach with voice analysis, eye contact tracking, 
+> resume-based interviews, and coding interview mode.
 
-| Phase | Status |
+🔗 **Live Demo**: https://interviewace-xyz.vercel.app  
+📡 **API**: https://interviewace-backend.onrender.com/docs
+
+## Tech Stack
+| Layer | Tech |
 |---|---|
-| 1. Foundation (schema, auth) | ✅ Done |
-| 2. Question engine (LLM + fallback bank) | ⏳ Next |
-| 3. Recording pipeline (audio capture, transcription) | Not started |
-| 4. Computer vision (eye-contact, posture) | Not started |
-| 5. Evaluation engine (LLM rubric scoring) | Not started |
-| 6. Frontend & history | Not started |
-| 7. Deploy & polish | Not started |
+| Frontend | Next.js 14, Tailwind CSS, Monaco Editor, face-api.js |
+| Backend | FastAPI, SQLAlchemy 2.0, Alembic, Pydantic |
+| AI | Groq (Llama 3.3 70B + Whisper), RAG |
+| Database | Neon Postgres |
+| Code Execution | Piston API |
+| Hosting | Vercel + Render (100% free) |
 
-`frontend/` will be added starting Phase 6.
+## Local Setup
+\`\`\`bash
+# Backend
+cd backend && python -m venv .venv && .venv/bin/activate
+pip install -r requirements-dev.txt
+cp .env.example .env   # fill in GROQ_API_KEY
+alembic upgrade head
+uvicorn app.main:app --reload
+
+# Frontend  
+cd frontend && npm install
+echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
+npm run dev
+\`\`\`
