@@ -3,8 +3,8 @@
 > AI-powered mock interview coach with voice analysis, eye contact tracking, 
 > resume-based interviews, and coding interview mode.
 
-🔗 **Live Demo**: https://interviewace-xyz.vercel.app  
-📡 **API**: https://interviewace-backend.onrender.com/docs
+🔗 **Live Demo**: https://interviewace-gza1.vercel.app  
+📡 **API**: https://interviewace-backend-vsnv.onrender.com/docs
 
 ## Tech Stack
 | Layer | Tech |
