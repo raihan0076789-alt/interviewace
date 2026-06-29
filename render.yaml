@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: interviewace-backend
+    env: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: WHISPER_MODEL
+        value: whisper-large-v3-turbo
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: QUESTION_CACHE_TTL_SECONDS
+        value: "3600"
